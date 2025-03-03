@@ -1,2 +1,2 @@
 # CS_3300_Project
-School Project for Intro to Software CS_3300. Excercise in Agile Development
+School Project for CS 3300 Intro to Software Engineering. Excercise in Agile Development
