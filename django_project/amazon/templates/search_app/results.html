@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .amazon-link {
+            background-color: #ff9900;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Amazon Search URL Generated</h1>
+    
+    <div class="result-box">
+        <p>You searched for: <strong>{{ query }}</strong></p>
+        <p>Your Amazon search URL:</p>
+        <code>{{ amazon_url }}</code>
+        <p>
+            <a href="{{ amazon_url }}" target="_blank" class="amazon-link">Go to Amazon Search</a>
+        </p>
+    </div>
+    
+    <a href="{% url 'search_form' %}" class="back-link">← Back to Search</a>
+</body>
+</html>

@@ -8,14 +8,14 @@ import urllib.parse
 
 # Load the welcome form
 def welcome(request):
-    return render(request, 'welcome.html')
+    return render(request, 'search_app/welcome.html')
 
-def display_search(request):
+def get_search(request):
     form = SearchForm
-    return render(request, 'amazon/get_search.html', {'form': form})
+    return render(request, 'search_app/get_search.html', {'form': form})
 
 # Get the user's search
-def user_search(request):
+def results(request):
 
     # Validate Search
     if request.method == 'POST':
@@ -30,8 +30,13 @@ def user_search(request):
 
             # Format the URL
             formatted_url = f"https://www.amazon.com/s?k={formatted_search}"
-            return render(request, 'search')
+
+            # Display the results
+            return render(request, 'search_app/results.html', {
+                'query': query,
+                'amazon_url': formatted_url
+            })
 
     # Redirect user to Amazon page with their input
-    return redirect(formatted_url)
+    return redirect('get_search')
 
