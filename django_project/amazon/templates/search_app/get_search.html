@@ -33,12 +33,10 @@
 </head>
 
 <body>
-    <form method="GET" action="">
-
-        <label for="search">Search:</label><br>
-        <input type="text" name="search" placeholder="Enter a search" required><br><br>
-
-        <button type="submit">Search</button>
+    <form method="post" action="{% url 'results' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Generate Amazon URL</button>
     </form>
 </body>
 

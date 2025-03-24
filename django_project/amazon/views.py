@@ -22,7 +22,7 @@ def results(request):
         form = SearchForm(request.POST)
 
         # Validate form
-        if form.is_valid:
+        if form.is_valid():
             query = form.cleaned_data['query']
 
             # Format the search
