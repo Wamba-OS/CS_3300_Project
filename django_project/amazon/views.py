@@ -28,6 +28,11 @@ def results(request):
             # Format the search
             formatted_search = urllib.parse.quote_plus(query)
 
+            ## Error checking
+            # If is not alphanumeric, then return an error
+            if not formatted_search.isalnum:
+                return redirect('no_search')
+
             # Format the URL
             formatted_url = f"https://www.amazon.com/s?k={formatted_search}"
 
