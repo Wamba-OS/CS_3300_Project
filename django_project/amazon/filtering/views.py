@@ -19,3 +19,5 @@ def product_list(request):
             products = products.filter(category__icontains=form.cleaned_data['category'])
 
     return render(request, 'products/product_list.html', {'products': products, 'form': form})
+
+# Price range example: "https://www.amazon.com/s?k=dog+food&low-price=XX&high-price=XX"
