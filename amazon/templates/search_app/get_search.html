@@ -35,6 +35,7 @@
 <body>
     <form method="post" action="{% url 'results' %}">
         {% csrf_token %}
+        {{ form.as_p }}
         <h3>Search Filters</h3>
         <label for="id_min_price">Min Price:</label>
         <input type="number" name="min_price" id="id_min_price" step="0.01" placeholder="Enter minimum price">
@@ -55,7 +56,6 @@
         <label for="id_blocked_domains">Block Sites (comma-separated):</label>
         <input type="text" name="blocked_domains" id="id_blocked_domains" placeholder="e.g. amazon.com, ebay.com">
 
-        {{ form.as_p }}
         <button type="submit">Generate Amazon URL</button>
     </form>
 </body>
