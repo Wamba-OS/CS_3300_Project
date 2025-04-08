@@ -1,0 +1,12 @@
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Filter</button>
+</form>
+
+<ul>
+    {% for product in products %}
+        <li>
+            <a href="{{ product.url }}">{{ product.name }}</a> - ${{ product.price }} - {{ product.brand }} - ⭐ {{ product.rating }}
+        </li>
+    {% endfor %}
+</ul>
