@@ -2,19 +2,40 @@
 <html>
 
 <head>
-    <title>Welcome to the Amazon search engine</title>
+    <title>Amazon Search Engine</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 250px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-right: 1px solid #ccc;
+        }
+
+        /* Main content styling */
+        .main-content {
+            flex: 1;
             padding: 20px;
         }
+
         form {
             background-color: #f8f9fa;
             padding: 20px;
             border-radius: 5px;
         }
+
         button {
             background-color: #ff9900;
             color: white;
@@ -23,38 +44,62 @@
             border-radius: 3px;
             cursor: pointer;
         }
-        input[type="text"] {
+
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 8px;
             margin: 10px 0;
-            box-sizing: border-box;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            flex: 1;
         }
     </style>
 </head>
 
 <body>
-    <form method="post" action="{% url 'results' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <div class="sidebar">
         <h3>Search Filters</h3>
-        <label for="id_min_price">Min Price:</label>
-        <input type="number" name="min_price" id="id_min_price" step="0.01" placeholder="Enter minimum price">
+        <form method="post" action="{% url 'results' %}">
+            {% csrf_token %}
 
-        <label for="id_max_price">Max Price:</label>
-        <input type="number" name="max_price" id="id_max_price" step="0.01" placeholder="Enter maximum price">
+            <label for="id_min_price">Min Price:</label>
+            <input type="number" name="min_price" id="id_min_price" step="0.01" placeholder="Enter minimum price">
 
-        <label for="id_brand">Brand:</label>
-        <input type="text" name="brand" id="id_brand" placeholder="Enter brand name">
+            <label for="id_max_price">Max Price:</label>
+            <input type="number" name="max_price" id="id_max_price" step="0.01" placeholder="Enter maximum price">
 
-        <label for="id_min_rating">Min Rating:</label>
-        <input type="number" name="min_rating" id="id_min_rating" step="0.1" min="0" max="5" placeholder="Enter minimum rating (0-5)">
+            <label for="id_brand">Brand:</label>
+            <input type="text" name="brand" id="id_brand" placeholder="Enter brand name">
 
-        <h3>Blocked Domains</h3>
-        <label for="id_blocked_domains">Block Sites (comma-separated):</label>
-        <input type="text" name="blocked_domains" id="id_blocked_domains" placeholder="e.g. amazon.com, ebay.com">
+            <label for="id_min_rating">Min Rating:</label>
+            <input type="number" name="min_rating" id="id_min_rating" step="0.1" min="0" max="5" placeholder="Enter minimum rating (0-5)">
 
-        <button type="submit">Generate Amazon URL</button>
-    </form>
+            <h3>Blocked Domains</h3>
+            <label for="id_blocked_domains">Block Sites (comma-separated):</label>
+            <input type="text" name="blocked_domains" id="id_blocked_domains" placeholder="e.g. amazon.com, ebay.com">
+        </form>
+    </div>
+
+    <div class="main-content">
+        <form method="post" action="{% url 'results' %}">
+            {% csrf_token %}
+            
+            <div class="search-bar">
+                <input type="text" name="query" placeholder="Search for products..." required>
+                <button type="submit">Search</button>
+            </div>
+
+            <!-- Django dynamic form rendering if needed -->
+            {{ form.as_p }}
+        </form>
+    </div>
 </body>
 
 </html>
